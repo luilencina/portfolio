@@ -1,15 +1,14 @@
 .banner {
   padding: 90px 15px;
-  background-color: #923cb5;
-  background-image: linear-gradient(147deg, #923cb5 0%, #000000 74%);
+  background-color: #473C8B;
   text-align: center;
+  height: 100vh;
   color: #FFFFFF;
   .banner--content{
     max-width: 1400px;
     height: auto;
     display: block;
     margin: 0 auto;
-    background: url('../assets/svg/soap.svg');
     background-repeat: no-repeat;
     background-position: top right;
     background-size: contain;
