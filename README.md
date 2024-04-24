@@ -1,22 +1,27 @@
-# Animated portfolio website template
-This repository is an extended version of another [portfolio template](https://shihabiiuc.github.io/portfolio/index.html) that is also created by me. In this portfolio template, I only added JavaScript animation (AOS). You can check the finished product [here](https://shihabiiuc.github.io/animated-portfolio/index.html).
+# Portfolio
 
-This an one page portfolio template that you can download and use on your own project or to create a website. You are allowed to edit and make your portfolio website exactly the way you want.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
 
-_However, you're **not allowed to make it available for download on any other websites** or you can't exchange this template with any commercial intent._
+## Development server
 
-This portfolio template is a part of my blog post and the [detail instruction can be found on the actual post.](https://shihabiiuc.com/animated-portfolio-website)
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Which niche best suits this template
-I created this template for everyone who wants to create an online portfolio. Though it represents a **freelance graphic designer**. Yet, it's very easy to make changes to fit other industries. Such as **web designer, freelance writer, SEO expert, you name it.** This would be a great start if you're just getting started and thinking to build your portfolio. _I already did the heavy lifting for you._
+## Code scaffolding
 
-## Mobile responsiveness
-> This template is fully responsive for all kinds of devices. Also, it **does not need any CSS framework.**
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## How does it work for you?
-After you download the repository, you will find all the necessary files and folders. However, the **CSS file lives in the "sass" folder.** But you **don't have to use SASS.** The only file you need in this folder is _"style.css"_ and ignore all other partials (_file.scss).
-I included these files (partials) because some of you may like to use SASS. But if you don't like SASS, just ignore the other files in the "sass" folder and only look/work on "style.css."
+## Build
 
-## Where to get support or if you have any questions?
-Most of you may not need extra support or don't have questions because of the simplicity. But if it's you who need help or has a question, then find my contact detail here:
-[Shihabiiuc.com/contact](https://shihabiiuc.com/contact)
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
