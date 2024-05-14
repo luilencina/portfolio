@@ -1,0 +1,33 @@
+<nav>
+  <div id="menu">
+    <button class="menu-item" (click)="buttonMenu('1')" ><a id="1" href="#home" class="active">Home</a></button>
+    <button class="menu-item" (click)="buttonMenu('2')"><a id="2" href="#about">About</a></button>
+    <button class="menu-item" (click)="buttonMenu('3')"><a id="3" href="#works">Works</a></button>
+    <button class="menu-item" (click)="buttonMenu('4')"><a id="4" href="#projects">projects</a></button>
+    <button class="menu-item" (click)="buttonMenu('5')"><a id="5" href="#contact">Contact</a></button>
+  </div>
+</nav>
+
+<scroll-container>
+  <scroll-page id="home">
+    <div class="home-header">
+      <div class="header-title">
+        <div class="title"><h1>Hi, i’m Lu Lencina!</h1></div>
+        <div class="subtitle"><p>subtitulo aqui</p></div>
+      </div>
+      <div class="header-sub">
+        <p>texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui texto aqui </p>
+      </div>
+      <div class="header-buttons">
+        <button></button>
+        <button></button>
+      </div>
+    </div>
+    <div class="home-image">
+    </div>
+  </scroll-page>
+  <scroll-page id="about"><h1>about</h1></scroll-page>
+  <scroll-page id="works"><h1>works</h1></scroll-page>
+  <scroll-page id="projects"><h1>projects</h1></scroll-page>
+  <scroll-page id="contact"><h1>contact</h1></scroll-page>
+</scroll-container>
