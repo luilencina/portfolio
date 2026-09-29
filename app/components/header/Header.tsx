@@ -4,6 +4,7 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { menuHeader } from "../../data/menuHeader";
 
 import logo from "../../assets/images/Portfolio.png";
+import { getAssetPath } from "~/utils/helpers/getImage";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ export function Header() {
           className="inline-flex items-center transition-opacity duration-200 hover:opacity-80"
         >
           <img
-            src={logo}
+            src={getAssetPath(logo)}
             alt="Luiza Lencina"
             className="h-10 w-auto object-contain"
           />

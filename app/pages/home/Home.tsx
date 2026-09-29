@@ -2,11 +2,10 @@ import React from "react";
 import ButtonComponent from "~/components/button/ButtonComponent";
 import { introductionData } from "~/data/home";
 import slime from "../../assets/images/slime.gif";
+import { getAssetPath } from "~/utils/helpers/getImage";
 
 export default function Home() {
   const { greeting, name, title, description, buttons } = introductionData;
-
-  const slimeSrc = import.meta.env.PROD ? `/portfolio${slime}` : slime;
 
   return (
     <section
@@ -15,7 +14,7 @@ export default function Home() {
     >
       <div className="w-full lg:w-[40%] flex justify-center items-center mb-10 lg:mb-0">
         <img
-          src={slimeSrc}
+          src={getAssetPath(slime)}
           alt="Slime"
           className="w-48 sm:w-64 lg:w-[70%] max-w-md h-auto object-contain"
         />

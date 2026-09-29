@@ -1,5 +1,6 @@
 import React from "react";
 import { aboutData } from "~/data/about";
+import { getAssetPath } from "~/utils/helpers/getImage";
 
 export default function About() {
   const { title, description, image } = aboutData;
@@ -29,7 +30,7 @@ export default function About() {
 
         <div className="w-full lg:w-[40%] flex justify-center lg:justify-end">
           <img
-            src={image.src}
+            src={getAssetPath(image.src)}
             alt={image.alt}
             className="w-64 sm:w-80 lg:w-full max-w-md h-auto object-contain"
           />
