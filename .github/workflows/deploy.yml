@@ -43,15 +43,28 @@ jobs:
 
           cp -R build/client/. deploy/
 
-          find deploy -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i \
+          echo "Corrigindo caminhos dos assets..."
+
+          find deploy -type f \( \
+            -name "*.html" \
+            -o -name "*.js" \
+            -o -name "*.css" \
+            -o -name "*.json" \
+          \) -exec sed -i \
             -e 's|"/assets/|"/portfolio/assets/|g' \
-            -e "s|'/assets/|'/portfolio/assets/|g" \
-            -e 's|=/assets/|=/portfolio/assets/|g' \
+            -e "'s|'/assets/|'/portfolio/assets/|g'" \
+            -e 's|(\/assets/|(\/portfolio/assets/|g' \
+            -e 's|url(/assets/|url(/portfolio/assets/|g' \
+            -e 's|url("/assets/|url("/portfolio/assets/|g' \
+            -e "s|url('/assets/|url('/portfolio/assets/|g" \
             {} +
 
           cp deploy/index.html deploy/404.html
 
           touch deploy/.nojekyll
+
+          echo "Arquivos publicados:"
+          find deploy -maxdepth 2 -type f | sort
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
