@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 
-export type SocialNetwork = "github" | "linkedin" | "instagram";
+export type SocialNetwork = "github" | "linkedin" | "instagram" | "email";
 
 export interface SocialButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   network: SocialNetwork;
@@ -23,6 +23,7 @@ const SocialButton = ({
     github: "bi-github",
     linkedin: "bi-linkedin",
     instagram: "bi-instagram",
+    email: "bi-email",
   };
 
   const classes = [
