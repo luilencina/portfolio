@@ -52,19 +52,19 @@ jobs:
             -o -name "*.json" \
           \) -exec sed -i \
             -e 's|"/assets/|"/portfolio/assets/|g' \
-            -e "'s|'/assets/|'/portfolio/assets/|g'" \
-            -e 's|(\/assets/|(\/portfolio/assets/|g' \
+            -e "s|'/assets/|'/portfolio/assets/|g" \
+            -e 's|(/assets/|( /portfolio/assets/|g' \
             -e 's|url(/assets/|url(/portfolio/assets/|g' \
             -e 's|url("/assets/|url("/portfolio/assets/|g' \
             -e "s|url('/assets/|url('/portfolio/assets/|g" \
             {} +
 
+          echo "Criando fallback 404..."
           cp deploy/index.html deploy/404.html
-
+          echo "Desabilitando Jekyll..."
           touch deploy/.nojekyll
-
-          echo "Arquivos publicados:"
-          find deploy -maxdepth 2 -type f | sort
+          echo "Conteúdo final do deploy:"
+          find deploy -maxdepth 3 -type f | sort
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
