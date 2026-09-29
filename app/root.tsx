@@ -5,13 +5,9 @@ import {
   Outlet,
   Scripts,
 } from "react-router";
-
 import type { Route } from "./+types/root";
-
 import "./app.css";
-
 import { ThemeProvider } from "./context/ThemeContext";
-
 import favicon from "./assets/images/herat.gif";
 
 export const links: Route.LinksFunction = () => [

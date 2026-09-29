@@ -6,6 +6,8 @@ import slime from "../../assets/images/slime.gif";
 export default function Home() {
   const { greeting, name, title, description, buttons } = introductionData;
 
+  const slimeSrc = import.meta.env.PROD ? `/portfolio${slime}` : slime;
+
   return (
     <section
       id="home"
@@ -13,7 +15,7 @@ export default function Home() {
     >
       <div className="w-full lg:w-[40%] flex justify-center items-center mb-10 lg:mb-0">
         <img
-          src={slime}
+          src={slimeSrc}
           alt="Slime"
           className="w-48 sm:w-64 lg:w-[70%] max-w-md h-auto object-contain"
         />
