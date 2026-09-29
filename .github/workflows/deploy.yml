@@ -40,7 +40,11 @@ jobs:
       - name: Prepare GitHub Pages
         run: |
           mkdir -p deploy
+
           cp -R build/client/. deploy/
+
+          echo "Corrigindo caminhos dos assets..."
+
           find deploy -type f \( \
             -name "*.html" \
             -o -name "*.js" \
@@ -48,16 +52,21 @@ jobs:
             -o -name "*.json" \
           \) -exec sed -i \
             -e 's|"/assets/|"/portfolio/assets/|g' \
-            -e 's|(/assets/|( /portfolio/assets/|g'
             -e "s|'/assets/|'/portfolio/assets/|g" \
-            -e 's|(/assets/|( /portfolio/assets/|g' \
+            -e 's|(/assets/|(/portfolio/assets/|g' \
             -e 's|url(/assets/|url(/portfolio/assets/|g' \
             -e 's|url("/assets/|url("/portfolio/assets/|g' \
             -e "s|url('/assets/|url('/portfolio/assets/|g" \
             {} +
 
+          echo "Criando fallback do GitHub Pages..."
+
           cp deploy/index.html deploy/404.html
+
           touch deploy/.nojekyll
+
+          echo "Arquivos publicados:"
+
           find deploy -maxdepth 3 -type f | sort
 
       - name: Setup GitHub Pages
