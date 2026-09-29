@@ -1,0 +1,49 @@
+import React from "react";
+import ButtonComponent from "~/components/button/ButtonComponent";
+import { introductionData } from "~/data/home";
+import slime from "../../assets/images/slime.gif";
+
+export default function Home() {
+  const { greeting, name, title, description, buttons } = introductionData;
+
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-12 bg-background text-text transition-colors duration-300"
+    >
+      <div className="w-full lg:w-[40%] flex justify-center items-center mb-10 lg:mb-0">
+        <img
+          src={slime}
+          alt="Slime"
+          className="w-48 sm:w-64 lg:w-[70%] max-w-md h-auto object-contain"
+        />
+      </div>
+
+      <div className="w-full lg:w-[60%] max-w-4xl flex flex-col items-start">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-text mb-2">
+          {greeting} <span className="text-primary">{name}</span>
+        </h1>
+
+        <h2 className="text-2xl sm:text-4xl font-bold text-text-secondary mb-6">
+          {title}
+        </h2>
+
+        <p className="text-base sm:text-lg text-text-secondary max-w-2xl mb-10">
+          {description.firstLine}
+          <br className="hidden sm:inline" />
+          {description.secondLine}
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          {buttons.map((button) => (
+            <ButtonComponent
+              key={button.label}
+              variant={button.type}
+              label={button.label}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
