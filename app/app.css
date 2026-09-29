@@ -17,3 +17,17 @@ body {
   }
   scroll-behavior: smooth;
 }
+
+@keyframes skills-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
+}
+
+.animate-skills-scroll {
+  animation: skills-scroll 30s linear infinite;
+}

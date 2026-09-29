@@ -52,6 +52,7 @@ export const skillsData: SkillCategory[] = [
       { name: "UI Design" },
       { name: "UX Design" },
       { name: "Design Systems" },
+      { name: "Photoshop" },
     ],
   },
   {
