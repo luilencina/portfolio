@@ -4,7 +4,7 @@ import { introductionData } from "~/data/home";
 import slime from "../../assets/images/slime.gif";
 import { getAssetPath } from "~/utils/helpers/getImage";
 import SocialButton from "~/components/social/SocialButton";
-import cvFile from "../../assets/documents/LuizaLencina-cv.pdf";
+import cvFile from "../../../public/documents/LuizaLencina-cv.pdf";
 import { downloadFile } from "~/utils/downloadFile";
 
 export default function Home() {

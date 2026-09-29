@@ -23,7 +23,7 @@ const SocialButton = ({
     github: "bi-github",
     linkedin: "bi-linkedin",
     instagram: "bi-instagram",
-    email: "bi-email",
+    email: "bi-envelope-fill",
   };
 
   const classes = [

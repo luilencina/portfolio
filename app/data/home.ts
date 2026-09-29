@@ -31,5 +31,10 @@ export const introductionData: IntroductionData = {
       href: "https://link.com",
       label: "Linkedin",
     },
+    {
+      network: "email",
+      href: "luizalencina@hotmail.com",
+      label: "Email",
+    },
   ],
 };
