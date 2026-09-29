@@ -7,11 +7,6 @@ export const menuHeader: MenuHeaderItem[] = [
     href: "#about",
   },
   {
-    id: "projects",
-    label: "Projects",
-    href: "#projects",
-  },
-  {
     id: "skills",
     label: "Skills",
     href: "#skills",
@@ -20,6 +15,11 @@ export const menuHeader: MenuHeaderItem[] = [
     id: "experience",
     label: "Experience",
     href: "#experience",
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    href: "#projects",
   },
   {
     id: "contact",

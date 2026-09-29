@@ -22,8 +22,8 @@ export default function LandingLayout() {
         <Home />
         <About />
         <Skills />
-        <Projects />
         <Experience />
+        <Projects />
         <Contact />
       </main>
     </>
