@@ -59,6 +59,45 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+          cache: npm
+
+      - name: Check environment
+        run: |
+          echo "Node:"
+          node --version
+
+          echo "npm:"
+          npm --version
+
+          echo "Node path:"
+          which node
+
+          echo "npm path:"
+          which npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check installed packages
+        run: |
+          npm list react-router
+          npm list @react-router/dev
+          npm list vite
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build/client
