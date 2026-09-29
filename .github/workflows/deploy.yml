@@ -67,21 +67,27 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check build output
+      - name: Configure GitHub Pages base path
+        shell: bash
         run: |
-          echo "===== BUILD ====="
-          ls -la build
+          sed -i 's|="/assets/|="/portfolio/assets/|g' build/client/index.html
+          sed -i 's|import "/assets/|import "/portfolio/assets/|g' build/client/index.html
 
-          echo "===== CLIENT ====="
-          ls -la build/client
+            - name: Check build output
+              run: |
+                echo "===== BUILD ====="
+                ls -la build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+                echo "===== CLIENT ====="
+                ls -la build/client
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./build/client
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: ./build/client
 
   deploy:
     environment:
