@@ -42,8 +42,7 @@ jobs:
       - name: Configure GitHub Pages base path
         shell: bash
         run: |
-          sed -i 's|="/assets/|="/portfolio/assets/|g' build/client/index.html
-          sed -i 's|import "/assets/|import "/portfolio/assets/|g' build/client/index.html
+          sed -i 's|/assets/|/portfolio/assets/|g' build/client/index.html
 
       - name: Check build output
         run: |
@@ -53,11 +52,11 @@ jobs:
           echo "===== CLIENT ====="
           ls -la build/client
 
-          echo "===== INDEX.HTML ====="
-          cat build/client/index.html
+          echo "===== ASSET REFERENCES ====="
+          grep -oE '(/portfolio)?/assets/[^"]+' build/client/index.html || true
 
-          echo "===== ASSET PATHS ====="
-          grep -o '"/portfolio/assets/[^"]*"' build/client/index.html || true
+          echo "===== INVALID ROOT ASSET REFERENCES ====="
+          grep -oE '"/assets/[^"]+' build/client/index.html || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
