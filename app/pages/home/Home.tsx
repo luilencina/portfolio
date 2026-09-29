@@ -3,9 +3,17 @@ import ButtonComponent from "~/components/button/ButtonComponent";
 import { introductionData } from "~/data/home";
 import slime from "../../assets/images/slime.gif";
 import { getAssetPath } from "~/utils/helpers/getImage";
+import SocialButton from "~/components/social/SocialButton";
+import cvFile from "../../assets/documents/LuizaLencina-cv.pdf";
+import { downloadFile } from "~/utils/downloadFile";
 
 export default function Home() {
-  const { greeting, name, title, description, buttons } = introductionData;
+  const { greeting, name, title, description, buttons, socials } =
+    introductionData;
+
+  const handleDownloadCV = () => {
+    downloadFile(cvFile, "Luiza-Lencina-CV.pdf");
+  };
 
   return (
     <section
@@ -41,6 +49,15 @@ export default function Home() {
               key={button.label}
               variant={button.type}
               label={button.label}
+              onClick={handleDownloadCV}
+            />
+          ))}
+
+          {socials.map((social) => (
+            <SocialButton
+              network={social.network}
+              href={social.href}
+              label={social.label}
             />
           ))}
         </div>

@@ -1,4 +1,5 @@
 import type { ButtonVariant } from "~/components/button/ButtonComponent";
+import type { SocialButtonProps } from "~/components/social/SocialButton";
 
 export interface IntroductionButton {
   label: string;
@@ -15,4 +16,5 @@ export interface IntroductionData {
     secondLine: string;
   };
   buttons: IntroductionButton[];
+  socials: SocialButtonProps[];
 }
