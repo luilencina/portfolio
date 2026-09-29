@@ -30,16 +30,50 @@ jobs:
           node-version: 22.22.0
           cache: npm
 
-      - name: Check Node and npm
+      - name: Check environment
         run: |
+          echo "===== NODE ====="
           node --version
+
+          echo "===== NPM ====="
           npm --version
+
+          echo "===== NODE PATH ====="
+          which node
+
+          echo "===== NPM PATH ====="
+          which npm
+
+          echo "===== PWD ====="
+          pwd
+
+          echo "===== FILES ====="
+          ls -la
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Check installed packages
+        run: |
+          echo "===== REACT ROUTER ====="
+          npm list react-router
+
+          echo "===== REACT ROUTER DEV ====="
+          npm list @react-router/dev
+
+          echo "===== VITE ====="
+          npm list vite
+
       - name: Build
         run: npm run build
+
+      - name: Check build output
+        run: |
+          echo "===== BUILD ====="
+          ls -la build
+
+          echo "===== CLIENT ====="
+          ls -la build/client
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -59,45 +93,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.22.0
-          cache: npm
-
-      - name: Check environment
-        run: |
-          echo "Node:"
-          node --version
-
-          echo "npm:"
-          npm --version
-
-          echo "Node path:"
-          which node
-
-          echo "npm path:"
-          which npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check installed packages
-        run: |
-          npm list react-router
-          npm list @react-router/dev
-          npm list vite
-
-      - name: Build
-        run: npm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./build/client
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
