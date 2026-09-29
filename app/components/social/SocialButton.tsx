@@ -54,7 +54,7 @@ const SocialButton = ({
       title={label ?? network}
       {...props}
     >
-      {icon ?? <i className={`bi ${icons[network]} text-lg`} />}
+      {icon ?? <i className={`bi ${icons[network]} text-xl`} />}
     </a>
   );
 };

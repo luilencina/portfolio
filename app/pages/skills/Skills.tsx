@@ -4,7 +4,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-12 bg-background text-text transition-colors duration-300"
+      className="min-h-screen flex flex-col items-center justify-start lg:justify-center px-6 py-12 bg-background text-text transition-colors duration-300"
     >
       <div className="w-full max-w-6xl">
         <h3 className="text-3xl pb-8 sm:text-4xl md:text-5xl font-extrabold tracking-tight text-text mb-8">
