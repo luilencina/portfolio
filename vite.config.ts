@@ -3,8 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/portfolio/",
-
   plugins: [tailwindcss(), reactRouter()],
 
   resolve: {
