@@ -39,10 +39,33 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Configure GitHub Pages base path
+      - name: Configure GitHub Pages paths
         shell: bash
         run: |
-          sed -i 's|/assets/|/portfolio/assets/|g' build/client/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index = Path("build/client/index.html")
+
+          content = index.read_text(encoding="utf-8")
+
+          content = content.replace(
+              '="/assets/',
+              '="/portfolio/assets/'
+          )
+
+          content = content.replace(
+              '="/assets/',
+              '="/portfolio/assets/'
+          )
+
+          content = content.replace(
+              '"/assets/',
+              '"/portfolio/assets/'
+          )
+
+          index.write_text(content, encoding="utf-8")
+          PY
 
       - name: Check build output
         run: |
@@ -52,10 +75,10 @@ jobs:
           echo "===== CLIENT ====="
           ls -la build/client
 
-          echo "===== ASSET REFERENCES ====="
-          grep -oE '(/portfolio)?/assets/[^"]+' build/client/index.html || true
+          echo "===== INDEX ASSET REFERENCES ====="
+          grep -oE '/portfolio/assets/[^"]+' build/client/index.html || true
 
-          echo "===== INVALID ROOT ASSET REFERENCES ====="
+          echo "===== ROOT ASSET REFERENCES ====="
           grep -oE '"/assets/[^"]+' build/client/index.html || true
 
       - name: Setup Pages
