@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-12 bg-background text-text transition-colors duration-300"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 bg-background text-text transition-colors duration-300"
     >
       <div className="w-full lg:w-[40%] flex justify-center items-center mb-10 lg:mb-0">
         <img

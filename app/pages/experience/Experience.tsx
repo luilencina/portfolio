@@ -1,4 +1,5 @@
 import Chip from "~/components/chips/Chip";
+
 import { experienceData } from "~/data/experience";
 import { technologies } from "~/data/technolgies";
 
@@ -6,7 +7,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="min-h-screen bg-background text-text transition-colors duration-300"
+      className="min-h-screen bg-background text-text transition-colors duration-300 px-6"
     >
       <div className="mx-auto w-full max-w-6xl">
         <h3 className="mb-20 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
@@ -14,7 +15,6 @@ export default function Experience() {
         </h3>
 
         <div className="relative">
-          {/* Linha central */}
           <div className="absolute left-4 top-0 h-full w-0.5 bg-[var(--color-primary)] md:left-1/2 md:-translate-x-1/2" />
 
           <div className="flex flex-col gap-12">
@@ -39,13 +39,13 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <div className={`${isLeft ? "md:hidden" : "md:pl-10"}`}>
+                  <div className={`hidden md:block ${!isLeft ? "pl-10" : ""}`}>
                     {!isLeft && (
                       <ExperienceCard experience={experience} align="left" />
                     )}
                   </div>
 
-                  <div className="md:hidden">
+                  <div className="min-w-0 md:hidden">
                     <ExperienceCard experience={experience} align="left" />
                   </div>
                 </div>
@@ -67,21 +67,21 @@ function ExperienceCard({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-secondary)] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)] ${
-        align === "right" ? "text-right" : "text-left"
-      }`}
+      className={`rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-secondary)] p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)] md:${align === "right" ? "text-right" : "text-left"}
+      `}
     >
       <h4 className="text-xl font-bold text-text">{experience.title}</h4>
+
       <p className="mt-1 text-sm font-semibold text-[var(--color-primary)]">
         {experience.subtitle}
       </p>
+
       <p className="mt-4 text-sm leading-6 text-text/70">
         {experience.description}
       </p>
+
       <div
-        className={`flex w-full flex-wrap gap-2 pt-5 ${
-          align === "right" ? "justify-end" : "justify-start"
-        }`}
+        className={` flex w-full flex-wrap gap-2 pt-5 justify-start md:${align === "right" ? "justify-end" : "justify-start"}`}
       >
         {experience.technologies.map((technologyId) => {
           const technology = technologies.find(
