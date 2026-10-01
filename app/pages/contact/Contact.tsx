@@ -4,14 +4,13 @@ import emailjs from "@emailjs/browser";
 
 import ButtonComponent from "~/components/button/ButtonComponent";
 import InputComponent from "~/components/input/InputComponent";
-
+import { AlertContainer, useAlert } from "~/providers/AlertProvider";
 import { contactData } from "~/data/contact";
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
-
+  const { alerts, showAlert } = useAlert();
   const [isSending, setIsSending] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,7 +20,6 @@ export default function Contact() {
     }
 
     setIsSending(true);
-    setStatus("idle");
 
     try {
       await emailjs.sendForm(
@@ -33,10 +31,15 @@ export default function Contact() {
         },
       );
 
-      setStatus("success");
+      showAlert("success", "Your message was sent successfully!");
       formRef.current.reset();
     } catch (error) {
-      setStatus("error");
+      console.error("Error sending email:", error);
+
+      showAlert(
+        "error",
+        "Something went wrong while sending your message. Please try again.",
+      );
     } finally {
       setIsSending(false);
     }
@@ -45,7 +48,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center px-6 py-20 bg-background text-text transition-colors duration-300"
+      className="min-h-screen flex items-center px-6 bg-background text-text transition-colors duration-300"
     >
       <div className="max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="w-full lg:w-[50%] flex flex-col items-start">
@@ -77,30 +80,26 @@ export default function Contact() {
             className="rounded-2xl border border-text/10 bg-background/50 p-6 shadow-sm backdrop-blur-sm md:p-8"
           >
             <div className="grid gap-5">
-              {contactData.form.fields.map((field) => (
-                <InputComponent
-                  key={field.id}
-                  id={field.id}
-                  name={field.name}
-                  label={field.label}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  rows={field.rows}
-                  textarea={field.textarea}
-                  required={field.required}
-                />
-              ))}
+              {contactData.form.fields
+                .filter((field) => field.type !== "file")
+                .map((field) => (
+                  <InputComponent
+                    key={field.id}
+                    id={field.id}
+                    name={field.name}
+                    label={field.label}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    rows={field.rows}
+                    textarea={field.textarea}
+                    required={field.required}
+                  />
+                ))}
 
-              {status === "success" && (
-                <p className="text-sm font-medium text-green-500">
-                  {contactData.form.messages.success}
-                </p>
-              )}
-
-              {status === "error" && (
-                <p className="text-sm font-medium text-red-500">
-                  {contactData.form.messages.error}
-                </p>
+              {alerts.length > 0 && (
+                <div className="mt-4">
+                  <AlertContainer />
+                </div>
               )}
 
               <ButtonComponent

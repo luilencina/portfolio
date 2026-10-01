@@ -55,6 +55,7 @@ export default function Home() {
 
           {socials.map((social) => (
             <SocialButton
+              key={social.network}
               network={social.network}
               href={social.href}
               label={social.label}

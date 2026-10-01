@@ -9,7 +9,7 @@ interface ButtonComponentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   icon?: ReactNode;
   iconPosition?: "left" | "right";
-  label: string;
+  label?: string;
 }
 
 const ButtonComponent = ({
@@ -51,7 +51,7 @@ const ButtonComponent = ({
         <span className="flex items-center">{icon}</span>
       )}
 
-      <span>{children ?? label}</span>
+      {(children ?? label) && <span>{children ?? label}</span>}
 
       {icon && iconPosition === "right" && (
         <span className="flex items-center">{icon}</span>

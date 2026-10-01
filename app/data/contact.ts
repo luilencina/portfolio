@@ -1,27 +1,14 @@
-export type ContactField = {
-  id: string;
-  name: string;
-  label: string;
-  placeholder: string;
-  required?: boolean;
-  type?: "text" | "email";
-  textarea?: boolean;
-  rows?: number;
-};
+import type { ContactField } from "~/types/contact";
 
 export const contactData = {
   label: "Contact",
-
   title: {
     normal: "Let's work",
     highlight: " together.",
   },
-
   description:
     "Have a project in mind, want to talk about an opportunity, or simply want to say hello? Feel free to send me a message.",
-
   email: "luizalencina@hotmail.com",
-
   form: {
     fields: [
       {
@@ -57,16 +44,28 @@ export const contactData = {
         textarea: true,
         required: true,
       },
+      {
+        id: "attachment",
+        name: "attachment",
+        label: "Attachment",
+        type: "file",
+        accept: ".pdf,.doc,.docx,.png,.jpg,.jpeg",
+        required: true,
+      },
     ] satisfies ContactField[],
 
     button: {
       defaultLabel: "Send message",
       loadingLabel: "Sending...",
     },
-
     messages: {
       success: "Your message was sent successfully!",
       error: "Something went wrong. Please try again.",
+    },
+    attachment: {
+      maxSize: 5 * 1024 * 1024,
+      maxSizeLabel: "5 MB",
+      accept: "PDF, DOC, DOCX, PNG ou JPG",
     },
   },
 } as const;

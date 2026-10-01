@@ -8,25 +8,42 @@ import { getAssetPath } from "~/utils/helpers/getImage";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(() =>
-    typeof window !== "undefined" ? window.location.hash : "#home",
-  );
+  const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setActiveSection(window.location.hash || "#home");
+    const updateActiveSection = () => {
+      const headerBottom =
+        document.querySelector("header")?.getBoundingClientRect().bottom ?? 0;
+      let currentSection = menuHeader[0]?.href ?? "#home";
+
+      for (const item of menuHeader) {
+        const section = document.getElementById(item.href.slice(1));
+
+        if (
+          section &&
+          section.getBoundingClientRect().top <= headerBottom + 1
+        ) {
+          currentSection = item.href;
+        }
+      }
+
+      setActiveSection(currentSection);
     };
 
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
+
     return () => {
-      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("hashchange", updateActiveSection);
     };
   }, []);
 
-  const handleMenuItemClick = (href: string) => {
+  const handleMenuItemClick = () => {
     setIsMenuOpen(false);
-    setActiveSection(href);
   };
 
   return (
@@ -44,7 +61,7 @@ export function Header() {
                 <a
                   key={item.id}
                   href={item.href}
-                  onClick={() => handleMenuItemClick(item.href)}
+                  onClick={handleMenuItemClick}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-[var(--color-primary)] text-[var(--color-text-white)]"
@@ -95,7 +112,7 @@ export function Header() {
               <a
                 key={item.id}
                 href={item.href}
-                onClick={() => handleMenuItemClick(item.href)}
+                onClick={handleMenuItemClick}
                 className={`border-b border-[var(--color-border)] py-4 text-sm font-medium transition-colors last:border-b-0 ${
                   isActive
                     ? "text-[var(--color-primary)]"

@@ -9,6 +9,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import favicon from "./assets/images/herat.gif";
+import { AlertProvider } from "./providers/AlertProvider";
 
 export const links: Route.LinksFunction = () => [
   {
@@ -42,8 +43,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
-
+        <ThemeProvider>
+          <AlertProvider>{children}</AlertProvider>
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>

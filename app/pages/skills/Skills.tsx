@@ -79,7 +79,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen flex flex-col items-center justify-start px-6 overflow-hidden bg-background text-text transition-colors duration-300 lg:justify-center"
+      className="min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-background text-text transition-colors duration-300 lg:justify-center"
     >
       <div className="w-full max-w-6xl">
         <h3 className="mb-8 pb-8 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
