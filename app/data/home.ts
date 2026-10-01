@@ -33,7 +33,7 @@ export const introductionData: IntroductionData = {
     },
     {
       network: "email",
-      href: "luizalencina@hotmail.com",
+      href: "#contact",
       label: "Email",
     },
   ],

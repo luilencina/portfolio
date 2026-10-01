@@ -45,7 +45,7 @@ export function Header() {
                   key={item.id}
                   href={item.href}
                   onClick={() => handleMenuItemClick(item.href)}
-                  className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-[var(--color-primary)] text-[var(--color-text-white)]"
                       : "text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-white)]"

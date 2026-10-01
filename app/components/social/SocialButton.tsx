@@ -15,10 +15,15 @@ const SocialButton = ({
   label,
   icon,
   className = "",
-  target = "_blank",
-  rel = "noopener noreferrer",
+  target,
+  rel,
   ...props
 }: SocialButtonProps) => {
+  const isInternalLink = href.startsWith("#");
+
+  const linkTarget = target ?? (isInternalLink ? undefined : "_blank");
+  const linkRel = rel ?? (isInternalLink ? undefined : "noopener noreferrer");
+
   const icons: Record<SocialNetwork, string> = {
     github: "bi-github",
     linkedin: "bi-linkedin",
@@ -49,8 +54,8 @@ const SocialButton = ({
     <a
       href={href}
       className={classes}
-      target={target}
-      rel={rel}
+      target={linkTarget}
+      rel={linkRel}
       aria-label={label ?? network}
       title={label ?? network}
       {...props}
