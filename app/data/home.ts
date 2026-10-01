@@ -1,8 +1,8 @@
 import type { IntroductionData } from "~/types/home";
 
 export const introductionData: IntroductionData = {
-  greeting: "Hey! I am",
-  name: "Luiza",
+  greeting: "Hi!, I am",
+  name: "Luiza Lencina",
   title: "Software Engineer",
   description: {
     firstLine:

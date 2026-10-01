@@ -2,6 +2,11 @@ import type { MenuHeaderItem } from "../types/menuHeader";
 
 export const menuHeader: MenuHeaderItem[] = [
   {
+    id: "home",
+    label: "Initial",
+    href: "#home",
+  },
+  {
     id: "about",
     label: "About me",
     href: "#about",

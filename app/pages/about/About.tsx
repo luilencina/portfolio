@@ -13,7 +13,8 @@ export default function About() {
       <div className="max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="w-full lg:w-[60%] flex flex-col items-start">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-text mb-8">
-            {title}
+            <span className="text-primary">A</span>bout{" "}
+            <span className="text-primary">M</span>e
           </h2>
 
           <div className="max-w-2xl space-y-5">

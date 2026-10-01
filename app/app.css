@@ -17,6 +17,10 @@ body {
   }
   scroll-behavior: smooth;
 }
+
+html {
+  scroll-padding-top: var(--header-height);
+}
 @keyframes skills-scroll {
   from {
     transform: translateX(0);

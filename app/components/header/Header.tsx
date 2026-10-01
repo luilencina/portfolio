@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { menuHeader } from "../../data/menuHeader";
@@ -8,40 +8,53 @@ import { getAssetPath } from "~/utils/helpers/getImage";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(() =>
+    typeof window !== "undefined" ? window.location.hash : "#home",
+  );
 
-  const handleMenuItemClick = () => {
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveSection(window.location.hash || "#home");
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  const handleMenuItemClick = (href: string) => {
     setIsMenuOpen(false);
+    setActiveSection(href);
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[var(--color-background)] transition-colors duration-300">
-      <div className="mx-auto flex h-[var(--header-height)] w-[calc(100%-2rem)] max-w-[var(--container-max-width)] items-center justify-between gap-8">
-        <a
-          href="#home"
-          className="inline-flex items-center transition-opacity duration-200 hover:opacity-80"
-        >
-          <img
-            src={getAssetPath(logo)}
-            alt="Luiza Lencina"
-            className="h-10 w-auto object-contain"
-          />
-        </a>
-
-        {/* Desktop */}
+    <header className="sticky top-0 z-50 relative w-full bg-[var(--color-background)] transition-colors duration-300">
+      <div className="mx-auto flex h-[var(--header-height)] w-[calc(100%-2rem)] max-w-[var(--container-max-width)] items-center justify-end gap-8">
         <div className="hidden items-center gap-8 md:flex">
           <nav
             className="flex items-end gap-6"
             aria-label="Navegação principal"
           >
-            {menuHeader.map((item) => (
-              <a
-                key={item.id}
-                className="text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]"
-                href={item.href}
-              >
-                {item.label}
-              </a>
-            ))}
+            {menuHeader.map((item) => {
+              const isActive = activeSection === item.href;
+
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => handleMenuItemClick(item.href)}
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-[var(--color-primary)] text-[var(--color-text-white)]"
+                      : "text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-white)]"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
           <ThemeToggle />
@@ -67,7 +80,7 @@ export function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden bg-[var(--color-background)] transition-all duration-300 md:hidden ${
+        className={`absolute left-0 top-full w-full overflow-hidden bg-[var(--color-background)] transition-all duration-300 md:hidden ${
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -75,16 +88,24 @@ export function Header() {
           className="mx-auto flex w-[calc(100%-2rem)] max-w-[var(--container-max-width)] flex-col py-4"
           aria-label="Navegação mobile"
         >
-          {menuHeader.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              onClick={handleMenuItemClick}
-              className="border-b border-[var(--color-border)] py-4 text-sm font-medium text-[var(--color-text-secondary)] transition-colors last:border-b-0 hover:text-[var(--color-primary)]"
-            >
-              {item.label}
-            </a>
-          ))}
+          {menuHeader.map((item) => {
+            const isActive = activeSection === item.href;
+
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={() => handleMenuItemClick(item.href)}
+                className={`border-b border-[var(--color-border)] py-4 text-sm font-medium transition-colors last:border-b-0 ${
+                  isActive
+                    ? "text-[var(--color-primary)]"
+                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
       </div>
     </header>
