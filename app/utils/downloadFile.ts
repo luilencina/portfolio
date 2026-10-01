@@ -2,13 +2,9 @@ export const downloadFile = async (
   file: string,
   fileName: string,
 ): Promise<void> => {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  const isSafari =
-    /Safari/.test(navigator.userAgent) &&
-    !/Chrome|CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
-
-  if (isIOS || isSafari) {
+  if (isMobile) {
     window.open(file, "_blank");
     return;
   }
@@ -22,7 +18,6 @@ export const downloadFile = async (
 
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
 
     link.href = url;
@@ -38,7 +33,6 @@ export const downloadFile = async (
     }, 1000);
   } catch (error) {
     console.error("Error downloading file:", error);
-
     window.open(file, "_blank");
   }
 };
