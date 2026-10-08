@@ -80,7 +80,7 @@ export default function Skills() {
       <div className="w-full max-w-6xl">
         <h3 className="mb-8 pb-8 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
           {language === "pt"
-            ? "Habilidades e tecnologias"
+            ? "Habilidades e Tecnologias"
             : "Skills & Technologies"}
         </h3>
 

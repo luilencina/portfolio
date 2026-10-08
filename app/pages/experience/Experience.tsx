@@ -91,21 +91,26 @@ function ExperienceCard({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-secondary)] p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)] md:${align === "right" ? "text-right" : "text-left"}
-      `}
+      className={`group rounded-2xl bg-[var(--color-background-secondary)] p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text-white)] hover:border-[var(--color-primary)] md:${
+        align === "right" ? "text-right" : "text-left"
+      }`}
     >
-      <h4 className="text-xl font-bold text-text">{experience.title}</h4>
+      <h4 className="text-xl font-bold text-text transition-colors duration-300 group-hover:text-[var(--color-text-white)]">
+        {experience.title}
+      </h4>
 
-      <p className="mt-1 text-sm font-semibold text-[var(--color-primary)]">
+      <p className="mt-1 text-sm font-semibold text-[var(--color-primary)] transition-colors duration-300 group-hover:text-[var(--color-text-white)]">
         {experience.subtitle}
       </p>
 
-      <p className="mt-4 text-sm leading-6 text-text/70">
+      <p className="mt-4 text-sm leading-6 text-text/70 transition-colors duration-300 group-hover:text-[var(--color-text-white)]">
         {experience.description}
       </p>
 
       <div
-        className={` flex w-full flex-wrap gap-2 pt-5 justify-start md:${align === "right" ? "justify-end" : "justify-start"}`}
+        className={`flex w-full flex-wrap gap-2 pt-5 justify-start md:${
+          align === "right" ? "justify-end" : "justify-start"
+        }`}
       >
         {experience.technologies.map((technologyId) => {
           const technology = technologies.find(
@@ -121,6 +126,8 @@ function ExperienceCard({
               key={technology.id}
               label={technology.label}
               variant="outlined"
+              color="primary"
+              className="group-hover:!border-white group-hover:!text-white hover:!bg-white hover:!border-white hover:!text-[var(--color-primary)]"
             />
           );
         })}

@@ -80,8 +80,10 @@ export function Header() {
             })}
           </nav>
 
-          <LanguageToggle />
-          <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <LanguageToggle />
+          </div>
         </div>
 
         {/* Mobile */}

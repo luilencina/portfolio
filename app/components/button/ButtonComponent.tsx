@@ -29,15 +29,15 @@ const ButtonComponent = ({
 
   const variantClasses = {
     filled: {
-      primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
-      secondary: "bg-gray-700 text-white hover:bg-gray-800 focus:ring-gray-500",
+      primary: "bg-primary text-white hover:bg-primary/60",
+      secondary: "bg-gray-700 text-white hover:bg-gray-800",
     },
 
     outlined: {
       primary:
-        "border border-primary bg-transparent text-primary hover:bg-primary hover:text-white focus:ring-primary",
+        "border border-primary bg-transparent text-primary hover:bg-primary hover:text-white",
       secondary:
-        "border border-gray-700 bg-transparent text-gray-700 hover:bg-gray-700 hover:text-white focus:ring-gray-500",
+        "border border-gray-700 bg-transparent text-gray-700 hover:bg-gray-700 hover:text-white",
     },
   };
 

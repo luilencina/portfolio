@@ -50,14 +50,14 @@ export default function About() {
               className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
-              {language === "pt" ? "Forma" : "Edu"}
+              {language === "pt" ? "Edu" : "Edu"}
             </h2>
 
             <h2
               className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
-              {language === "pt" ? "ção" : "cation"}
+              {language === "pt" ? "cação" : "cation"}
             </h2>
           </div>
 
