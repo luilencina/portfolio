@@ -1,5 +1,5 @@
 import type { Experience } from "~/data/experience";
-import type { Project } from "~/data/projects";
+import type { Project } from "~/types/projects";
 
 export interface TechnologyRelation {
   type: "experience" | "project";

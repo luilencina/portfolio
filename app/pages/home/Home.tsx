@@ -12,7 +12,7 @@ export default function Home() {
     introductionData;
 
   const handleDownloadCV = () => {
-    downloadFile(cvFile, "Luiza-Lencina-CV.pdf");
+    downloadFile(cvFile, getAssetPath("Luiza-Lencina-CV.pdf"));
   };
 
   return (
