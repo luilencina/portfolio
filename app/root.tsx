@@ -8,6 +8,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import favicon from "./assets/images/herat.gif";
 import { AlertProvider } from "./providers/AlertProvider";
 
@@ -44,7 +45,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <body>
         <ThemeProvider>
-          <AlertProvider>{children}</AlertProvider>
+          <LanguageProvider>
+            <AlertProvider>{children}</AlertProvider>
+          </LanguageProvider>
         </ThemeProvider>
         <Scripts />
       </body>

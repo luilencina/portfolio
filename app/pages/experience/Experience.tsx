@@ -1,9 +1,19 @@
 import Chip from "~/components/chips/Chip";
+import { useLanguage } from "~/context/LanguageContext";
+import type { Experience as ExperienceType } from "~/data/en/experience";
 
-import { experienceData } from "~/data/experience";
-import { technologies } from "~/data/technologies";
+import { experienceData as englishExperienceData } from "~/data/en/experience";
+import { technologies as englishTechnologies } from "~/data/en/technologies";
+import { experienceData as portugueseExperienceData } from "~/data/pt/experience";
+import { technologies as portugueseTechnologies } from "~/data/pt/technologies";
 
 export default function Experience() {
+  const { language } = useLanguage();
+  const experienceData =
+    language === "pt" ? portugueseExperienceData : englishExperienceData;
+  const technologies =
+    language === "pt" ? portugueseTechnologies : englishTechnologies;
+
   return (
     <section
       id="experience"
@@ -11,7 +21,7 @@ export default function Experience() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <h3 className="mb-20 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
-          Experience
+          {language === "pt" ? "Experiência" : "Experience"}
         </h3>
 
         <div className="relative">
@@ -29,7 +39,11 @@ export default function Experience() {
                 >
                   <div className={`hidden md:block ${isLeft ? "pr-10" : ""}`}>
                     {isLeft && (
-                      <ExperienceCard experience={experience} align="right" />
+                      <ExperienceCard
+                        experience={experience}
+                        technologies={technologies}
+                        align="right"
+                      />
                     )}
                   </div>
 
@@ -41,12 +55,20 @@ export default function Experience() {
 
                   <div className={`hidden md:block ${!isLeft ? "pl-10" : ""}`}>
                     {!isLeft && (
-                      <ExperienceCard experience={experience} align="left" />
+                      <ExperienceCard
+                        experience={experience}
+                        technologies={technologies}
+                        align="left"
+                      />
                     )}
                   </div>
 
                   <div className="min-w-0 md:hidden">
-                    <ExperienceCard experience={experience} align="left" />
+                    <ExperienceCard
+                      experience={experience}
+                      technologies={technologies}
+                      align="left"
+                    />
                   </div>
                 </div>
               );
@@ -60,9 +82,11 @@ export default function Experience() {
 
 function ExperienceCard({
   experience,
+  technologies,
   align,
 }: {
-  experience: (typeof experienceData)[number];
+  experience: ExperienceType;
+  technologies: typeof englishTechnologies;
   align: "left" | "right";
 }) {
   return (

@@ -1,10 +1,12 @@
 import React from "react";
-
-import { aboutData } from "~/data/about";
-
+import { useLanguage } from "~/context/LanguageContext";
+import { aboutData as englishAboutData } from "~/data/en/about";
+import { aboutData as portugueseAboutData } from "~/data/pt/about";
 import { getAssetPath } from "~/utils/helpers/getImage";
 
 export default function About() {
+  const { language } = useLanguage();
+  const aboutData = language === "pt" ? portugueseAboutData : englishAboutData;
   const { title, description, image, education } = aboutData;
 
   return (
@@ -48,14 +50,14 @@ export default function About() {
               className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
-              Edu
+              {language === "pt" ? "Forma" : "Edu"}
             </h2>
 
             <h2
               className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
-              cation
+              {language === "pt" ? "ção" : "cation"}
             </h2>
           </div>
 

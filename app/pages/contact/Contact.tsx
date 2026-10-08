@@ -4,10 +4,15 @@ import emailjs from "@emailjs/browser";
 
 import ButtonComponent from "~/components/button/ButtonComponent";
 import InputComponent from "~/components/input/InputComponent";
+import { useLanguage } from "~/context/LanguageContext";
 import { AlertContainer, useAlert } from "~/providers/AlertProvider";
-import { contactData } from "~/data/contact";
+import { contactData as englishContactData } from "~/data/en/contact";
+import { contactData as portugueseContactData } from "~/data/pt/contact";
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const contactData =
+    language === "pt" ? portugueseContactData : englishContactData;
   const formRef = useRef<HTMLFormElement>(null);
   const { alerts, showAlert } = useAlert();
   const [isSending, setIsSending] = useState(false);
@@ -31,15 +36,12 @@ export default function Contact() {
         },
       );
 
-      showAlert("success", "Your message was sent successfully!");
+      showAlert("success", contactData.form.messages.success);
       formRef.current.reset();
     } catch (error) {
       console.error("Error sending email:", error);
 
-      showAlert(
-        "error",
-        "Something went wrong while sending your message. Please try again.",
-      );
+      showAlert("error", contactData.form.messages.error);
     } finally {
       setIsSending(false);
     }
@@ -62,7 +64,9 @@ export default function Contact() {
           </p>
 
           <div>
-            <p className="mb-1 text-sm text-text/50">Email</p>
+            <p className="mb-1 text-sm text-text/50">
+              {language === "pt" ? "E-mail" : "Email"}
+            </p>
 
             <a
               href={`mailto:${contactData.email}`}

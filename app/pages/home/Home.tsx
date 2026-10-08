@@ -1,18 +1,25 @@
 import React from "react";
 import ButtonComponent from "~/components/button/ButtonComponent";
-import { introductionData } from "~/data/home";
+import { useLanguage } from "~/context/LanguageContext";
+import { introductionData as englishIntroductionData } from "~/data/en/home";
+import { introductionData as portugueseIntroductionData } from "~/data/pt/home";
 import slime from "../../assets/images/slime.gif";
 import { getAssetPath } from "~/utils/helpers/getImage";
 import SocialButton from "~/components/social/SocialButton";
-import cvFile from "../../../public/documents/LuizaLencina-cv.pdf";
 import { downloadFile } from "~/utils/downloadFile";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const introductionData =
+    language === "pt" ? portugueseIntroductionData : englishIntroductionData;
   const { greeting, name, title, description, buttons, socials } =
     introductionData;
 
   const handleDownloadCV = () => {
-    downloadFile(getAssetPath(cvFile), "Luiza-Lencina-CV.pdf");
+    downloadFile(
+      getAssetPath("/documents/LuizaLencina-cv.pdf"),
+      "Luiza-Lencina-CV.pdf",
+    );
   };
 
   return (

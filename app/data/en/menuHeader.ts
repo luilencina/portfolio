@@ -1,4 +1,4 @@
-import type { MenuHeaderItem } from "../types/menuHeader";
+import type { MenuHeaderItem } from "../../types/menuHeader";
 
 export const menuHeader: MenuHeaderItem[] = [
   {

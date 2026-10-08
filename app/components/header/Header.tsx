@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
-import { menuHeader } from "../../data/menuHeader";
+import { LanguageToggle } from "../LanguageToggle/LanguageToggle";
+import { useLanguage } from "~/context/LanguageContext";
+import { menuHeader as englishMenuHeader } from "../../data/en/menuHeader";
+import { menuHeader as portugueseMenuHeader } from "../../data/pt/menuHeader";
 
 import logo from "../../assets/images/Portfolio.png";
 import { getAssetPath } from "~/utils/helpers/getImage";
 
 export function Header() {
+  const { language } = useLanguage();
+  const menuHeader =
+    language === "pt" ? portugueseMenuHeader : englishMenuHeader;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
 
@@ -74,18 +80,28 @@ export function Header() {
             })}
           </nav>
 
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 
         {/* Mobile */}
         <div className="flex items-center gap-4 md:hidden">
           <ThemeToggle />
+          <LanguageToggle />
 
           <button
             type="button"
             onClick={() => setIsMenuOpen((prev) => !prev)}
             className="flex h-10 w-10 items-center justify-center text-[var(--color-text)] transition-colors hover:text-[var(--color-primary)]"
-            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-label={
+              language === "pt"
+                ? isMenuOpen
+                  ? "Fechar menu"
+                  : "Abrir menu"
+                : isMenuOpen
+                  ? "Close menu"
+                  : "Open menu"
+            }
             aria-expanded={isMenuOpen}
           >
             <i

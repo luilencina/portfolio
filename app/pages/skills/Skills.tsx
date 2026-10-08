@@ -1,12 +1,23 @@
 import { useMemo } from "react";
 
 import Chip from "~/components/chips/Chip";
-import { technologies } from "~/data/technologies";
-import { experienceData } from "~/data/experience";
+import { useLanguage } from "~/context/LanguageContext";
+import { technologies as englishTechnologies } from "~/data/en/technologies";
+import { experienceData as englishExperienceData } from "~/data/en/experience";
+import { projectsData as englishProjectsData } from "~/data/en/projects";
+import { technologies as portugueseTechnologies } from "~/data/pt/technologies";
+import { experienceData as portugueseExperienceData } from "~/data/pt/experience";
+import { projectsData as portugueseProjectsData } from "~/data/pt/projects";
 import { getTechnologyRelations } from "~/utils/technologyRelations";
-import { projectsData } from "~/data/projects";
 
 export default function Skills() {
+  const { language } = useLanguage();
+  const technologies =
+    language === "pt" ? portugueseTechnologies : englishTechnologies;
+  const experienceData =
+    language === "pt" ? portugueseExperienceData : englishExperienceData;
+  const projectsData =
+    language === "pt" ? portugueseProjectsData : englishProjectsData;
   const skillCategories = useMemo(() => {
     return Object.values(
       technologies.reduce<
@@ -32,7 +43,7 @@ export default function Skills() {
         return categories;
       }, {}),
     );
-  }, []);
+  }, [technologies]);
 
   const infiniteSkills = [...skillCategories, ...skillCategories];
 
@@ -43,24 +54,11 @@ export default function Skills() {
       projectsData,
     );
 
-    if (relations.length === 0) {
-      console.log(
-        `Nenhuma experiência ou projeto encontrado para: ${technologyId}`,
-      );
-
-      return;
-    }
-
-    if (relations.length > 1) {
-      console.log(
-        `Mais de um resultado encontrado para: ${technologyId}`,
-        relations,
-      );
-
-      return;
-    }
-
     const [relation] = relations;
+    if (!relation) {
+      return;
+    }
+
     const element = document.getElementById(`${relation.type}-${relation.id}`);
     if (!element) {
       console.warn(`Elemento não encontrado: ${relation.type}-${relation.id}`);
@@ -81,7 +79,9 @@ export default function Skills() {
     >
       <div className="w-full max-w-6xl">
         <h3 className="mb-8 pb-8 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
-          Skills & Technologies
+          {language === "pt"
+            ? "Habilidades e tecnologias"
+            : "Skills & Technologies"}
         </h3>
 
         <div className="relative w-full overflow-x-auto overflow-y-hidden scrollbar-none">
