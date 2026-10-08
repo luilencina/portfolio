@@ -8,6 +8,8 @@ import { useLanguage } from "~/context/LanguageContext";
 import { AlertContainer, useAlert } from "~/providers/AlertProvider";
 import { contactData as englishContactData } from "~/data/en/contact";
 import { contactData as portugueseContactData } from "~/data/pt/contact";
+import { getAssetPath } from "~/utils/helpers/getImage";
+import espeon from "../../assets/images/espeon.gif";
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -74,6 +76,13 @@ export default function Contact() {
             >
               {contactData.email}
             </a>
+            {/* <div className="w-full lg:w-[60%] flex justify-center items-center lg:justify-end pt-8">
+              <img
+                src={getAssetPath(espeon)}
+                alt="Espeon"
+                className="w-64 sm:w-80 lg:w-full max-w-md h-auto object-contain"
+              />
+            </div> */}
           </div>
         </div>
 

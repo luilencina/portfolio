@@ -28,7 +28,7 @@ export const introductionData: IntroductionData = {
     },
     {
       network: "linkedin",
-      href: "https://link.com",
+      href: "https://linkedin.in/luizalencina",
       label: "Linkedin",
     },
     {
