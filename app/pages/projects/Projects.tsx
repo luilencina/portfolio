@@ -2,7 +2,6 @@ import { useLanguage } from "~/context/LanguageContext";
 import { projectsData as englishProjectsData } from "~/data/en/projects";
 import { projectsData as portugueseProjectsData } from "~/data/pt/projects";
 import Chip from "~/components/chips/Chip";
-import { getAssetPath } from "~/utils/helpers/getImage";
 import ButtonComponent from "~/components/button/ButtonComponent";
 
 export default function Projects() {
@@ -16,16 +15,19 @@ export default function Projects() {
       className="min-h-screen bg-background text-text transition-colors duration-300 px-6 py-20"
     >
       <div className="mx-auto w-full max-w-6xl">
-        <h3 className="mb-20 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5x">
-          {language === "pt" ? "Meus projetos" : "My Projects"}
-        </h3>
+        <div className="flex items-center justify-between mb-20">
+          <h3 className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5x">
+            {language === "pt" ? "Meus projetos" : "My Projects"}
+          </h3>
+          {/* <ButtonComponent iconOnly icon="filter" /> */}
+        </div>
 
         <div className="grid gap-8 md:grid-cols-3">
           {projectsData.map((project) => (
             <article
               key={project.id}
               id={`project-${project.id}`}
-              className="flex flex-col overflow-hidden rounded-xl border border-border"
+              className="flex flex-col overflow-hidden rounded-xl bg-[var(--color-background-secondary)] duration-300 hover:shadow-lg"
             >
               {project.image && (
                 <img

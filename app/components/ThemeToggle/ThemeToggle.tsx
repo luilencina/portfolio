@@ -1,24 +1,22 @@
 import { useTheme } from "../../context/ThemeContext";
+import ButtonComponent from "../button/ButtonComponent";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
+  const isLight = theme === "light";
+
   return (
-    <button
+    <ButtonComponent
       type="button"
+      icon={isLight ? "moon" : "sun"}
+      iconOnly
+      variant="outlined"
+      color="secondary"
       onClick={toggleTheme}
-      aria-label={
-        theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"
-      }
-      title={theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"}
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--background-secon)] text-[var(--color-text)] transition-all duration-200 hover:scale-105 hover:bg-[var(--color-surface-hover)] active:scale-95 focus-visible:outline-2 focus-visible:outline-[var(--color-primary)] focus-visible:outline-offset-2"
-    >
-      <i
-        className={`bi ${
-          theme === "light" ? "bi-moon" : "bi-sun"
-        } text-lg leading-none`}
-        aria-hidden="true"
-      />
-    </button>
+      aria-label={isLight ? "Ativar modo escuro" : "Ativar modo claro"}
+      title={isLight ? "Ativar modo escuro" : "Ativar modo claro"}
+      className="h-9 w-9 shrink-0 border-[var(--color-border)] bg-[var(--background-secon)] text-[var(--color-text)] hover:scale-105 hover:bg-[var(--color-surface-hover)] active:scale-95"
+    />
   );
 }
