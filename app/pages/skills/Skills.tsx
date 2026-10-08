@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
 import Chip from "~/components/chips/Chip";
-import { technologies } from "~/data/technolgies";
+import { technologies } from "~/data/technologies";
 import { experienceData } from "~/data/experience";
-// import { projectsData } from "~/data/projects";
 import { getTechnologyRelations } from "~/utils/technologyRelations";
+import { projectsData } from "~/data/projects";
 
 export default function Skills() {
   const skillCategories = useMemo(() => {
@@ -40,7 +40,7 @@ export default function Skills() {
     const relations = getTechnologyRelations(
       technologyId,
       experienceData,
-      // projectsData,
+      projectsData,
     );
 
     if (relations.length === 0) {
@@ -61,9 +61,7 @@ export default function Skills() {
     }
 
     const [relation] = relations;
-
     const element = document.getElementById(`${relation.type}-${relation.id}`);
-
     if (!element) {
       console.warn(`Elemento não encontrado: ${relation.type}-${relation.id}`);
 
@@ -79,7 +77,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-background text-text transition-colors duration-300 lg:justify-center"
+      className="flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-background text-text transition-colors duration-300 lg:justify-center"
     >
       <div className="w-full max-w-6xl">
         <h3 className="mb-8 pb-8 text-3xl font-extrabold tracking-tight text-text sm:text-4xl md:text-5xl">
@@ -91,7 +89,7 @@ export default function Skills() {
             {infiniteSkills.map((category, index) => (
               <div
                 key={`${category.id}-${index}`}
-                className="w-[280px] shrink-0 rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-secondary)] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)] sm:w-[320px]"
+                className="w-[280px] shrink-0 rounded-2xl bg-[var(--color-background-secondary)] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)] sm:w-[320px]"
               >
                 <h3 className="mb-5 mt-2 text-xl font-semibold text-text">
                   {category.title}

@@ -13,4 +13,20 @@ export const aboutData: AboutData = {
     src: aboutImage,
     alt: "Luiza working on software development",
   },
+  education: [
+    {
+      id: "graduation",
+      title: "Bachelor's Degree in Software Engineering",
+      institution: "PUCRS – Porto Alegre, RS, Brazil",
+      period: "2019 - 2025",
+      // description: "Descrição opcional da formação.",
+    },
+    {
+      id: "specialization",
+      title: "English Course",
+      institution: "TopWay",
+      period: "2026 – Present",
+      // description: "Descrição opcional.",
+    },
+  ],
 };

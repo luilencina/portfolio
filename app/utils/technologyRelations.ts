@@ -1,10 +1,5 @@
 import type { Experience } from "~/data/experience";
-
-interface Project {
-  id: string;
-  title: string;
-  technologies: string[];
-}
+import type { Project } from "~/data/projects";
 
 export interface TechnologyRelation {
   type: "experience" | "project";

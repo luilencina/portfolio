@@ -1,38 +1,11 @@
-export const downloadFile = async (
-  file: string,
-  fileName: string,
-): Promise<void> => {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+export const downloadFile = (file: string, fileName?: string): void => {
+  const link = document.createElement("a");
 
-  if (isMobile) {
-    window.open(file, "_blank");
-    return;
-  }
+  link.href = file;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
 
-  try {
-    const response = await fetch(file);
-
-    if (!response.ok) {
-      throw new Error(`Failed to download file: ${response.status}`);
-    }
-
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download = fileName;
-    link.style.display = "none";
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-    }, 1000);
-  } catch (error) {
-    console.error("Error downloading file:", error);
-    window.open(file, "_blank");
-  }
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };

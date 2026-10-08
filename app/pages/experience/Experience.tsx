@@ -1,7 +1,7 @@
 import Chip from "~/components/chips/Chip";
 
 import { experienceData } from "~/data/experience";
-import { technologies } from "~/data/technolgies";
+import { technologies } from "~/data/technologies";
 
 export default function Experience() {
   return (
@@ -15,7 +15,7 @@ export default function Experience() {
         </h3>
 
         <div className="relative">
-          <div className="absolute left-4 top-0 h-full w-0.5 bg-[var(--color-primary)] md:left-1/2 md:-translate-x-1/2" />
+          <div className="absolute left-4 top-0 h-full w-0.5 bg-[var(--color-background-card)] md:left-1/2 md:-translate-x-1/2" />
 
           <div className="flex flex-col gap-12">
             {experienceData.map((experience, index) => {
