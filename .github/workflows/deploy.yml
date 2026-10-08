@@ -34,12 +34,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Validate EmailJS configuration
+        run: |
+          test -n "$VITE_EMAILJS_SERVICE_ID" || exit 1
+          test -n "$VITE_EMAILJS_TEMPLATE_ID" || exit 1
+          test -n "$VITE_EMAILJS_PUBLIC_KEY" || exit 1
+          echo "EmailJS environment variables configured successfully"
         env:
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
           VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
+
+      - name: Build
+        run: npm run build
 
       - name: Prepare GitHub Pages
         run: |
