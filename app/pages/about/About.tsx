@@ -45,14 +45,14 @@ export default function About() {
         <div className="grid gap-5 sm:grid-cols-[20%_1fr_1fr] items-center">
           <div className="flex flex-col items-start">
             <h2
-              className="text-4xl sm:text-5xl uppercase tracking-tight"
+              className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
               Edu
             </h2>
 
             <h2
-              className="text-4xl sm:text-5xl uppercase tracking-tight"
+              className="text-4xl sm:text-5xl font-bold uppercase tracking-tight"
               style={{ color: "var(--color-primary)" }}
             >
               cation
