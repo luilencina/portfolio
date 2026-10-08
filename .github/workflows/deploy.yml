@@ -21,6 +21,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -36,9 +39,21 @@ jobs:
 
       - name: Validate EmailJS configuration
         run: |
-          test -n "$VITE_EMAILJS_SERVICE_ID" || exit 1
-          test -n "$VITE_EMAILJS_TEMPLATE_ID" || exit 2
-          test -n "$VITE_EMAILJS_PUBLIC_KEY" || exit 1
+          if [ -z "$VITE_EMAILJS_SERVICE_ID" ]; then
+            echo "VITE_EMAILJS_SERVICE_ID is missing"
+            exit 1
+          fi
+
+          if [ -z "$VITE_EMAILJS_TEMPLATE_ID" ]; then
+            echo "VITE_EMAILJS_TEMPLATE_ID is missing"
+            exit 1
+          fi
+
+          if [ -z "$VITE_EMAILJS_PUBLIC_KEY" ]; then
+            echo "VITE_EMAILJS_PUBLIC_KEY is missing"
+            exit 1
+          fi
+
           echo "EmailJS environment variables configured successfully"
         env:
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
@@ -47,6 +62,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
 
       - name: Prepare GitHub Pages
         run: |
