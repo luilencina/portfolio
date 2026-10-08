@@ -1,5 +1,4 @@
 import type { AboutData } from "~/types/about";
-
 import aboutImage from "~/assets/images/gengar.gif";
 
 export const aboutData: AboutData = {
