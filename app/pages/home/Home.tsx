@@ -7,6 +7,7 @@ import slime from "../../assets/images/slime.gif";
 import { getAssetPath } from "~/utils/helpers/getImage";
 import SocialButton from "~/components/social/SocialButton";
 import { downloadFile } from "~/utils/downloadFile";
+import espeon from "../../assets/images/espeon.gif";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -29,7 +30,7 @@ export default function Home() {
     >
       <div className="w-full lg:w-[40%] flex justify-center items-center mb-10 lg:mb-0">
         <img
-          src={getAssetPath(slime)}
+          src={getAssetPath(espeon)}
           alt="Slime"
           className="w-48 sm:w-64 lg:w-[70%] max-w-md h-auto object-contain"
         />
