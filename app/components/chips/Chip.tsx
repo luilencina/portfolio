@@ -24,8 +24,6 @@ const Chip = ({
     ? "hover:bg-[var(--text-white)] hover:text-[var(--color-primary)]"
     : "hover:bg-[var(--color-primary)] hover:text-white";
 
-  console.log(hoverClasses);
-
   const variantClasses = {
     filled: `
       border
